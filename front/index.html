@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autenticación con JWT</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <h1>Autenticación con JWT</h1>
+  <div id="login">
+    <input type="text" id="username" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button id="login-btn">Iniciar Sesión</button>
+  </div>
+  <div id="protected-resource">
+    <button id="get-protected-btn">Acceder a Recurso Protegido</button>
+    <p id="resource-result"></p>
+  </div>
+  <script src="./js/auth.js"></script>
+  <script src="./js/protected.js"></script>
+</body>
+</html>
