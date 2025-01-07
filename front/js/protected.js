@@ -1,22 +1,18 @@
-const login = async () => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+const getProtectedResource = async () => {
+    const token = sessionStorage.getItem('token');
   
-    const response = await fetch('http://localhost:3000/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password }),
+    const response = await fetch('http://localhost:3000/protected', {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${token}` },
     });
   
     if (response.ok) {
-      const { token } = await response.json();
-      sessionStorage.setItem('token', token);  // Es una forma de almacenar datos en el navegador utilizando el objeto sessionStorage.
-
-      alert('Inicio de sesión exitoso. Token almacenado.');
+      const data = await response.json();
+      document.getElementById('resource-result').textContent = JSON.stringify(data, null, 2);
     } else {
-      alert('Error de autenticación');
+      alert('Acceso denegado al recurso protegido');
     }
   };
   
-  document.getElementById('login-btn').addEventListener('click', login);
+  document.getElementById('get-protected-btn').addEventListener('click', getProtectedResource);
   
